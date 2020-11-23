@@ -6,10 +6,10 @@
 //
 
 import UIKit
+import BaseDesignFramework
 
 
-
-class Baseview: UIView {
+class AppBaseView: BaseView {
     
     lazy var indicatorView: UIActivityIndicatorView  = {
        let indictor = UIActivityIndicatorView()
@@ -32,35 +32,7 @@ class Baseview: UIView {
             indicate ? addIndicator() : removeIndicator()
         }
     }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        createDesign()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func createDesign() {
-        backgroundColor = .white
-    }
 
-    public func freezeAll() {
-        addSubview(freezerView)
-        NSLayoutConstraint.activate([
-            freezerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            freezerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            freezerView.topAnchor.constraint(equalTo: topAnchor),
-            freezerView.bottomAnchor.constraint(equalTo: bottomAnchor)
-            
-        ])
-    }
-    
-    /// This method will remove the freezer view from screen
-    public func unFreezeAll() {
-        freezerView.removeConstraints(freezerView.constraints)
-        freezerView.removeFromSuperview()
-    }
     private func addIndicator() {
         addSubview(indicatorView)
         NSLayoutConstraint.activate([

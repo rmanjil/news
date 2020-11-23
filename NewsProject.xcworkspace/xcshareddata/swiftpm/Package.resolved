@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "BaseDesignFramework",
+        "repositoryURL": "https://github.com/rmanjil/BaseDesignFramework.git",
+        "state": {
+          "branch": "master",
+          "revision": "a2bf48285cb996cb4bae825673dcae27a5cd43e0",
+          "version": null
+        }
+      },
+      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {

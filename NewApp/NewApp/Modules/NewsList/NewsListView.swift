@@ -15,7 +15,7 @@ class ArticleCell:UITableViewCell {
     
     lazy var articleImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
@@ -107,14 +107,14 @@ class ArticleCell:UITableViewCell {
         attributeString.addAttributes([.foregroundColor: UIColor.gray, .font: UIFont.systemFont(ofSize: 14) ], range: secondRange)
         label.attributedText = attributeString
         
-        imageView?.setImage(string: "https://example.com/image.png")
+        articleImageView.setImage(string: articleModel.urlToImage)
     }
     
     @objc private func actionButton() {
         delegate?.selectedArticle(article: articleModel)
     }
 }
-class NewsListView: Baseview {
+class NewsListView: AppBaseView {
     lazy var tableView: BaseTable = {
         let tableView = BaseTable(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false

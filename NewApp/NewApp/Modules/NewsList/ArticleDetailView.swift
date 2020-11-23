@@ -40,7 +40,7 @@ class BaseLabel: UILabel {
     }
 }
 
-class ArticleDetailView: Baseview {
+class ArticleDetailView: AppBaseView {
     
     
     

@@ -13,10 +13,10 @@ extension UIImageView {
         if let url = URL(string: string) {
             self.kf.indicatorType = .activity
             self.kf.setImage(with: url)
-            self.kf.setImage(with: url)
-          { [weak self](_) in
-                self?.contentMode = .scaleAspectFill
-            }
+//            self.kf.setImage(with: url, completionHandler:
+//                                { [weak self](_) in
+//                                    self?.contentMode = .scaleAspectFill
+//                                })
 
         }
     }

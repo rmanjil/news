@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 
-class NewsListController: BaseController {
+class NewsListController: AppBaseController {
     
     var screenView: NewsListView {
         baseView as! NewsListView
@@ -57,7 +57,7 @@ extension NewsListController: ArticleSelection {
     func selectedArticle(article: Article) {
         let view = ArticleDetailView()
         let viewModel = ArticleDetailViewModel(article: article)
-        let controller = ArticleDetailController(view: view, viewModel: viewModel)
+        let controller = ArticleDetailController(baseView: view, baseViewModel: viewModel)
         
         navigationController?.pushViewController(controller, animated: true)
     }

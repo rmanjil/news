@@ -7,7 +7,7 @@
 
 import UIKit
 import WebKit
-
+import BaseDesignFramework
 
 class ArticleDetailViewModel: BaseViewModel {
     let article: Article
@@ -16,7 +16,7 @@ class ArticleDetailViewModel: BaseViewModel {
         self.article = article
     }
 }
-class ArticleDetailController: BaseController {
+class ArticleDetailController: AppBaseController {
 
     var screenView: ArticleDetailView {
         baseView as! ArticleDetailView
