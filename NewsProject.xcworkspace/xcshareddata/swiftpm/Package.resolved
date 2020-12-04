@@ -14,8 +14,8 @@
         "package": "BaseDesignFramework",
         "repositoryURL": "https://github.com/rmanjil/BaseDesignFramework.git",
         "state": {
-          "branch": "master",
-          "revision": "a2bf48285cb996cb4bae825673dcae27a5cd43e0",
+          "branch": null,
+          "revision": "33bd52e2fbdb2e1b52781826a36967a5f96460e0",
           "version": null
         }
       },

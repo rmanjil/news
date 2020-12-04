@@ -23,12 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let view = NewsListView()
-            let viewModel = NewsListViewModel()
-            let controller = NewsListController(baseView: view, baseViewModel: viewModel)
-            let navController = UINavigationController(rootViewController: controller)
-            window.rootViewController = navController
             self.window = window
+            self.window?.rootViewController = NewsListController(baseView: NewsListView(), baseViewModel: NewsListViewModel())
             window.makeKeyAndVisible()
         }
     }

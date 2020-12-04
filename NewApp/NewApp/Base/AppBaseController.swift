@@ -18,3 +18,10 @@ class AppBaseController: BaseController {
     
     func observeEvent() {}
 }
+
+
+extension UIViewController: Presentable {
+    public var presenting: UIViewController? {
+        return self 
+    }
+}
