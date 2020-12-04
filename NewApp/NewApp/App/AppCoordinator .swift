@@ -17,7 +17,7 @@ final class  AppCoordinator: BaseCoordinator {
     }
     
     override func start(with deepLink: DeepLink?) {
-      
+      openArticalList()
     }
     
     private func openArticalList() {
@@ -27,8 +27,28 @@ final class  AppCoordinator: BaseCoordinator {
         
         viewModel.trigger.receive(on: RunLoop.main).sink { [weak self] trigger in
             guard let self = self else { return }
+            self.handleTrigger(route: trigger)
         }.store(in: &bag)
         
         route.setRoot(presentable: controller)
+    }
+    
+    private func openArticleDetail(article: Article) {
+        let viewModel = ArticleDetailViewModel(article: article)
+        let controller = ArticleDetailController(baseView: ArticleDetailView(), baseViewModel: viewModel)
+        
+        route.push(presentable: controller)
+    }
+    
+}
+
+extension AppCoordinator {
+    private func handleTrigger(route: AppRoutable) {
+        switch route {
+        case AppRoute.articleDetail(article: let article):
+            openArticleDetail(article: article)
+        default:
+            break
+        }
     }
 }

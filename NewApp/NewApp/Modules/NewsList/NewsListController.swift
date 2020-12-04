@@ -20,6 +20,13 @@ class NewsListController: AppBaseController {
         baseViewModel as!  NewsListViewModel
     }
     
+    override var showLeftBarButton: Bool {
+        get {
+            false
+        }
+        set { }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         screenView.tableView.delegate = self
@@ -56,12 +63,6 @@ extension NewsListController: UITableViewDelegate, UITableViewDataSource {
 
 extension NewsListController: ArticleSelection {
     func selectedArticle(article: Article) {
-        let view = ArticleDetailView()
-        let viewModel = ArticleDetailViewModel(article: article)
-        let controller = ArticleDetailController(baseView: view, baseViewModel: viewModel)
-        
-        navigationController?.pushViewController(controller, animated: true)
+        viewModel.trigger.send(AppRoute.articleDetail(article:  article))
     }
-    
-    
 }

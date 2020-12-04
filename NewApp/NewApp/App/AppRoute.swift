@@ -9,5 +9,5 @@ import Foundation
 import BaseDesignFramework
 
 enum AppRoute: AppRoutable {
-    case articleDetail(url: String)
+    case articleDetail(article: Article)
 }
