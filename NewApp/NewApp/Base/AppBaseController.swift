@@ -31,7 +31,8 @@ class AppBaseController: BaseController {
             }
         }
         observeEvent()
-        
+        bindUI()
+        observeScreen()
        
     }
     
@@ -46,5 +47,7 @@ class AppBaseController: BaseController {
     }
     
     func observeEvent() {}
+    func  observeScreen() {}
+    func  bindUI() {}
 }
 

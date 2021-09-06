@@ -10,4 +10,5 @@ import BaseDesignFramework
 
 enum AppRoute: AppRoutable {
     case articleDetail(article: Article)
+    case finish 
 }

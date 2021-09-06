@@ -12,6 +12,13 @@ import BaseDesignFramework
 
 class NewsListController: AppBaseController {
     
+    
+    lazy var logOutButton: UIBarButtonItem = {
+        let backButton = UIBarButtonItem(title: "log out", style: .plain, target: self, action: #selector(logoutButtonPressed(sender:)))
+        backButton.tag = BaseBarButton.back.rawValue
+        return backButton
+    }()
+    
     var screenView: NewsListView {
         baseView as! NewsListView
     }
@@ -32,7 +39,7 @@ class NewsListController: AppBaseController {
         screenView.tableView.delegate = self
         screenView.tableView.dataSource = self
         title = "News HeadLine"
-       
+        navigationItem.rightBarButtonItem = logOutButton
         screenView.indicate = true
         viewModel.callApi()
     }
@@ -43,6 +50,15 @@ class NewsListController: AppBaseController {
             self?.screenView.indicate = false
         }.store(in: &viewModel.bag)
       
+    }
+    
+    @objc func logoutButtonPressed(sender: UIBarButtonItem) {
+        alert(title: "Logout", message: "Are sure want to logout?", actions: [AlertConstant.cancel, AlertConstant.logout]) { alert in
+            if case AlertConstant.logout = alert {
+               _ = UserData.delete
+                self.viewModel.trigger.send(AppRoute.finish)
+            }
+        }
     }
 }
 

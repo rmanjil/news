@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ArticleSelection: class {
+protocol ArticleSelection: AnyObject {
     func selectedArticle(article: Article)
 }
 
@@ -114,6 +114,7 @@ class ArticleCell:UITableViewCell {
         delegate?.selectedArticle(article: articleModel)
     }
 }
+
 class NewsListView: AppBaseView {
     lazy var tableView: BaseTable = {
         let tableView = BaseTable(frame: .zero, style: .plain)

@@ -9,6 +9,11 @@ import Foundation
 import BaseDesignFramework
 import Combine
 
+enum AuthRoute: AppRoutable {
+    case login
+    case forgotPassword
+}
+
 final class  AppCoordinator: BaseCoordinator {
     let route: Route
     var bag = Set<AnyCancellable>()
@@ -17,7 +22,15 @@ final class  AppCoordinator: BaseCoordinator {
     }
     
     override func start(with deepLink: DeepLink?) {
-      openArticalList()
+        redirectScreen()
+    }
+    
+    private func redirectScreen() {
+       if   UserData.get == nil {
+            openLanding()
+       } else {
+        openArticalList()
+       }
     }
     
     private func openArticalList() {
@@ -40,6 +53,17 @@ final class  AppCoordinator: BaseCoordinator {
         route.push(presentable: controller)
     }
     
+    
+    private func openLanding() {
+        let viewModel = LandingViewModel()
+        let controller = LandingController(baseView: LandingScreen(), baseViewModel: viewModel)
+        viewModel.trigger.receive(on: RunLoop.main).sink { [weak self] trigger in
+            guard let self = self else { return }
+            self.handleTrigger(route: trigger)
+        }.store(in: &bag)
+        route.setRoot(presentable: controller, hideBar:  true)
+    }
+    
 }
 
 extension AppCoordinator {
@@ -47,6 +71,8 @@ extension AppCoordinator {
         switch route {
         case AppRoute.articleDetail(article: let article):
             openArticleDetail(article: article)
+        case AppRoute.finish:
+            redirectScreen()
         default:
             break
         }
